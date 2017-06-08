@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+
+		<typeAlias alias="cart" type="com.web.entity.Cart"/>
+
+		<insert id="savecart" parameterClass="cart">
+			
+		  <selectKey resultClass="long" keyProperty="id"> 
+              select C.nextval from dual 
+          </selectKey> 
+			
+			
+			insert into cart
+			values (#id#,#itemid#,#quantity#)
+		
+		</insert>
+		
+		
+		<select id="findAllCart" resultClass="cart">
+			select id,itemid,quantity
+			from cart
+			
+		
+		</select>
+		
+		<delete id="delCartByItemid" parameterClass="string">
+			
+			delete from cart
+			where itemid=#itemid#
+			
+		</delete>
+		
+		
+		<update id="updateQuantity" parameterClass="cart">
+			update cart
+			set quantity=#quantity#
+			where itemid=#itemid#
+		
+		</update>
+		
+		
+
+</sqlMap>

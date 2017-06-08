@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	
+	
+	
+	<typeAlias alias="signon" type="com.web.entity.Signon"/>
+	
+	
+		<select id="findSignonById" parameterClass="string" resultClass="signon">
+			select userid,password
+			from signon
+			where userid=#userid#
+		</select>
+		
+
+		<insert id="saveSignon" parameterClass="signon">
+			insert into signon
+			values (#userid#,#password#)
+		
+		</insert>
+		
+		
+		<update id="updatesignon" parameterClass="signon">
+			update signon
+			set password=#password#
+			where userid=#userid#
+	
+		</update>
+</sqlMap>

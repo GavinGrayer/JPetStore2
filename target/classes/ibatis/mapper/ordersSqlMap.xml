@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	
+	
+	<typeAlias alias="orders" type="com.web.entity.Orders"/>
+	
+
+
+		<insert id="saveOrders" parameterClass="orders">
+		
+			<selectKey resultClass="long" keyProperty="orderid"> 
+              select C.nextval from dual 
+          </selectKey> 
+		
+			insert into orders(orderid,userid,cardtype,creditcard,exprdate,shipaddr1,billaddr1,billcity,shipzip,billcountry,orderdate,shipcity,shipcountry,courier,totalprice,billtofirstname,shiptofirstname)
+					values (#orderid#,#userid#,#cardtype#,#creditcard#,#exprdate#,#shipaddr1#,#billaddr1#,#billcity#,#shipzip#,#billcountry#,#orderdate#,#shipcity#,#shipcountry#,#courier#,#totalprice#,#billtofirstname#,#shiptofirstname#)
+		
+		</insert>
+		
+		<select id="queryOrderByuserId" parameterClass="String" resultClass="orders">
+			select orderid,orderdate,totalprice 
+			from orders
+			where userid=#userid#
+		
+		</select>
+		
+		
+		
+</sqlMap>

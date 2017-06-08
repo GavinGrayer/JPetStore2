@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+    	http://www.springframework.org/schema/context 
+    	http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    	http://www.springframework.org/schema/mvc 
+    	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+    	
+
+    <!-- 配置数据源 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="url">
+			<value>jdbc:oracle:thin:@127.0.0.1:1521:orcl</value>
+		</property>
+		<property name="username">
+			<value>scott</value>
+		</property>
+		<property name="password">
+			<value>orcl</value>
+		</property>
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+	</bean>
+	
+	<!-- 将SqlMapClient的创建托管给spring容器 -->
+   	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+   		<!-- 注入ibatis的配置文件的路径 -->
+   		<property name="configLocation" value="classpath:ibatis/sqlMapConfig.xml"></property>
+   		<property name="dataSource" ref="dataSource"></property>
+   	</bean>
+   
+      
+</beans>

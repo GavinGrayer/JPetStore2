@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	
+	
+	<typeAlias alias="product" type="com.web.entity.Product"/>
+	
+		<select id="finProductById" parameterClass="string" resultClass="product">
+			select productid,category,name,descn
+			from product
+			where category=#category#
+		</select>
+		
+		
+		<resultMap class="product" id="productResultMap">
+			<result property="productid" column="productid"/>
+			<result property="name" column="name"/>
+			<result property="category" column="category"/>
+			<result property="descn" column="descn"/>
+			
+			
+			<result property="items" column="productid" select="findItemByProductId"/>
+		</resultMap>
+		
+		
+		
+		<select id="queryAllProduct" parameterClass="string" resultMap="productResultMap">
+			select productid,name,category,descn 
+			from product
+			where productid=#productid#
+		
+		</select>
+		
+		
+		<select id="findProductById" parameterClass="string" resultClass="product">
+			select productid,name,category,descn 
+			from product
+			where productid=#productid#
+		
+		</select>
+		
+</sqlMap>

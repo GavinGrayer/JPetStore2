@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	
+	
+	<typeAlias alias="item" type="com.web.entity.Item"/>
+	
+
+
+		<select id="findItemByProductId" parameterClass="string" resultClass="item">
+			select itemid,listprice,unitcost,status,attr1
+			from item
+			where productid=#productid#
+		
+		</select>
+		
+		
+		<select id="findItemById" parameterClass="string" resultClass="item">
+			select itemid,productid,listprice,unitcost,status,attr1
+			from item
+			where itemid=#itemid# 
+		</select>
+		
+		<select id="queryProductidByItemid" parameterClass="string" resultClass="string">
+			select productid
+			from item
+			where itemid=#itemid#
+		
+		</select>
+		
+</sqlMap>

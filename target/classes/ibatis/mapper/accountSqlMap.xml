@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+
+
+	
+	
+	<typeAlias alias="account" type="com.web.entity.Account"/>
+	
+
+
+		<insert id="saveAccount" parameterClass="account">
+			insert into account(userid,firstname,email,phone,addr1,city,state,zip,country)
+			values (#userid#,#firstname#,#email#,#phone#,#addr1#,#city#,#state#,#zip#,#country#)
+		
+		</insert>
+		
+		<update id="updateaccount" parameterClass="account">
+			update account
+			set firstname=#firstname#,email=#email#,phone=#phone#,addr1=#addr1#,city=#city#,state=#state#,zip=#zip#,country=#country#
+			where userid=#userid#
+		</update>
+		
+</sqlMap>

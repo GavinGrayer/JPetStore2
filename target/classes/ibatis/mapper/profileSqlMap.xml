@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	
+	
+	
+	
+	<typeAlias alias="profile" type="com.web.entity.Profile"/>
+	
+
+		<insert id="saveProfile" parameterClass="profile">
+			insert into profile
+			values (#userid#,#langpref#,#favcategory#,#mylistopt#,#banneropt#)
+		
+		</insert>
+		
+		<select id="queryProfileByUserid" parameterClass="string" resultClass="profile">
+			
+			select mylistopt,banneropt,favcategory
+			from profile
+			where userid=#userid#
+			
+			
+		</select>
+		
+		<update id="updateprofile" parameterClass="profile">
+			update profile
+			set langpref=#langpref#,favcategory=#favcategory#,mylistopt=#mylistopt#,banneropt=#banneropt#
+			where userid=#userid#
+		</update>
+		
+		
+</sqlMap>
